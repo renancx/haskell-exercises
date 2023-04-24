@@ -12,3 +12,9 @@ potDois :: Integer -> Integer
 potDois n 
     | n == 0 = 1
     | otherwise = 2 * potDois (n-1)
+
+--funcao que faz a multiplicacao de dois numeros
+mul :: Integer -> Integer -> Integer
+mul m n 
+    | n == 0 = 0
+    | n > 0 = m + mul m (n-1)
