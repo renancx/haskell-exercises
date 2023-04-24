@@ -18,3 +18,8 @@ mul :: Integer -> Integer -> Integer
 mul m n 
     | n == 0 = 0
     | n > 0 = m + mul m (n-1)
+
+--funcao que faz a soma de todos os numeros de uma lista
+somaLista :: [Integer] -> Integer
+somaLista [] = 0
+somaLista (x:xs) = x + somaLista xs
