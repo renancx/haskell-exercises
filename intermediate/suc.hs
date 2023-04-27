@@ -18,18 +18,15 @@ integer2nat :: Integer -> Nat
 integer2nat 0 = Zero
 integer2nat n = Suc (integer2nat (n-1))
 
--- Somar dois números naturais
 natAdd :: Nat -> Nat -> Nat
 natAdd Zero n = n
 natAdd (Suc m) n = Suc (natAdd m n)
 
--- Subtrair dois números naturais
 natSub :: Nat -> Nat -> Nat
 natSub Zero _ = Zero
 natSub m Zero = m
 natSub (Suc m) (Suc n) = natSub m n
 
--- Multiplicar dois números naturais
 natMul :: Nat -> Nat -> Nat
 natMul Zero _ = Zero
 natMul (Suc m) n = natAdd n (natMul m n)
