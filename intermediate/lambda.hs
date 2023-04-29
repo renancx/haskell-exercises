@@ -15,3 +15,7 @@ somaPar = \p q -> p + q
 -- Funcao que calcula o dobro de um numero
 dobro :: Int -> Int
 dobro = \y -> y * 2
+
+-- Funcao que calcula a raiz quadrada de uma lista de inteiros
+raiz :: [Int] -> [Float]
+raiz = \lst -> map (\x -> sqrt (fromIntegral x)) lst
