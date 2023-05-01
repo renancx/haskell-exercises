@@ -19,3 +19,7 @@ dobro = \y -> y * 2
 -- Funcao que calcula a raiz quadrada de uma lista de inteiros
 raiz :: [Int] -> [Float]
 raiz = \lst -> map (\x -> sqrt (fromIntegral x)) lst
+
+-- Funcao que filtra os numeros pares de uma lista de inteiros
+filtrarPar :: [Int] -> [Int]
+filtrarPar = \lst -> filter even lst
