@@ -15,3 +15,8 @@ main = do
 potencia :: Int -> Int
 potencia 0 = 1
 potencia x = 2 * potencia (x-1)
+
+-- Outro metodo
+power :: Int -> Int -> Int
+power p 0 = 1
+power p n = p * (power p (n-1))
