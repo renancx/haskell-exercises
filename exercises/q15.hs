@@ -15,4 +15,4 @@ list = [1, 5, 3, 2, 4]
 
 pares :: [Integer] -> [Integer]
 pares [] = []
-pares b = (filter (not . odd) b)
+pares b = (filter (not . odd) b) 
