@@ -10,7 +10,7 @@ elemento :: Int
 elemento = snd (fst tupla2)
 
 -- ================================
-
+ 
 tupla3 :: (Int, String)
 tupla3 = (4, "ola")
 
