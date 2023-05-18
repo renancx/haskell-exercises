@@ -27,9 +27,7 @@ totalVenda (_, itens, _) = sum (map (\(_, preco, qtd) -> preco * fromIntegral qt
 
 -- Funcao que retorna apenas os itens cujo valor unitario é maior que 1 real
 maioresQueUmReal :: Item -> Bool
-maioresQueUmReal (_, preco, _) = case preco of 
-                                    preco | preco > 1 -> True
-                                    _ -> False
+maioresQueUmReal (_, preco, _) = if preco > 1 then True else False
 
 itensCaros :: Venda -> [Item]
 itensCaros (_, itens, _) = filter maioresQueUmReal itens
