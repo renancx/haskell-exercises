@@ -16,3 +16,8 @@ acimaMedia :: Turma -> String
 acimaMedia [] = "Turma vazia"
 acimaMedia (h:t) = case h of 
                 (_, nome, (n01, n02, n03)) -> if (((n01 + n02 + n03)/3) > 6) then nome else acimaMedia t
+
+turmaMedia :: Turma -> [(Nome, Double)]
+turmaMedia [] = []
+turmaMedia (h:t) = case h of 
+                (_, nome, (n1, n2, n3)) -> (nome, ((n1 + n2 + n3) / 3)) : turmaMedia t
