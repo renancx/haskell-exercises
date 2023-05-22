@@ -12,7 +12,7 @@ exemplo = (1,
             [ ("Bala", 1, 10), 
               ("Pirulito", 2, 5)
             ], 
-            Dinheiro
+            Dinheiro 
         )
 
 -- Funcao que recebe uma venda e retorna o total de itens 
