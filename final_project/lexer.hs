@@ -5,6 +5,11 @@ data Expr = BTrue
           | Num Int
           | Add Expr Expr
           | And Expr Expr
+          | If Expr Expr Expr
+          -- operação aritmética de subtração
+          | Sub Expr Expr
+          -- operação aritmética de multiplicação
+          | Mul Expr Expr
         deriving Show
 
 data Ty = TBool
