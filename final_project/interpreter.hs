@@ -23,3 +23,15 @@ step (Sub e1 e2) = Sub (step e1) e2
 step (Mul (Num n1) (Num n2)) = Num (n1 * n2)
 step (Mul (Num n) e2) = Mul (Num n) (step e2)
 step (Mul e1 e2) = Mul (step e1) e2
+
+-- step para a operação lógica de or
+step (Or BFalse e2) = e2
+step (Or BTrue e2) = BTrue
+step (Or e1 e2) = Or (step e1) e2
+
+-- step para operação lógica de xor
+step (Xor BFalse BFalse) = BFalse
+step (Xor BTrue BTrue) = BFalse
+step (Xor BFalse BTrue) = BTrue
+step (Xor BTrue BFalse) = BTrue
+step (Xor e1 e2) = Xor (step e1) e2
