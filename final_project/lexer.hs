@@ -7,3 +7,6 @@ data Expr = BTrue
           | And Expr Expr
         deriving Show
 
+data Ty = TBool
+        | TNum
+        deriving Show
