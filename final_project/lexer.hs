@@ -10,8 +10,12 @@ data Expr = BTrue
           | Sub Expr Expr
           -- operação aritmética de multiplicação
           | Mul Expr Expr
-        deriving Show
+          -- operação lógica de or
+          | Or Expr Expr
+          -- operação lógica de xor
+          | Xor Expr Expr
+          deriving Show
 
 data Ty = TBool
         | TNum
-        deriving Show
+        deriving (Show, Eq)
