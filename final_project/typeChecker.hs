@@ -23,3 +23,13 @@ typeof (If e1 e2 e3) =
                                     Nothing
                                 _ -> Nothing
                   _ -> Nothing
+
+-- typeof para operação aritmética de subtração
+typeof (Sub e1 e2) = case (typeof e1, typeof e2) of
+    (Just TNum, Just TNum) -> Just TNum
+    _ -> Nothing
+
+-- typeof para operação aritmética de multiplicação
+typeof (Mul e1 e2) = case (typeof e1, typeof e2) of
+    (Just TNum, Just TNum) -> Just TNum
+    _ -> Nothing
