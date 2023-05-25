@@ -13,3 +13,13 @@ step (And e1 e2) = And (step e1) e2
 step (If BTrue e1 e2) = e1
 step (If BFalse e1 e2) = e2
 step (If e1 e2 e3) = If (step e1) e2 e3
+
+-- step para a operação aritmética de subtração
+step (Sub (Num n1) (Num n2)) = Num (n1 - n2)
+step (Sub (Num n) e2) = Sub (Num n) (step e2)
+step (Sub e1 e2) = Sub (step e1) e2
+
+-- step para a operação aritmética de multiplicação
+step (Mul (Num n1) (Num n2)) = Num (n1 * n2)
+step (Mul (Num n) e2) = Mul (Num n) (step e2)
+step (Mul e1 e2) = Mul (step e1) e2
