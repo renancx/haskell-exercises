@@ -36,7 +36,6 @@ step (Xor BFalse BTrue) = BTrue
 step (Xor BTrue BFalse) = BTrue
 step (Xor e1 e2) = Xor (step e1) e2
 
--- funcao recursiva que avalia uma expressão até ela se tornar um valor final
 eval :: Expr -> Expr
 eval e = case step e of
     (Num n) -> Num n
