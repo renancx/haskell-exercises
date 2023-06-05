@@ -7,15 +7,14 @@ data Expr = BTrue
           | Add Expr Expr
           | And Expr Expr
           | If Expr Expr Expr
-          -- operação aritmética de subtração
           | Sub Expr Expr
-          -- operação aritmética de multiplicação
           | Mul Expr Expr
-          -- operação lógica de or
           | Or Expr Expr
-          -- operação lógica de xor
           | Xor Expr Expr
-          deriving Show
+          | Var String
+          | Lam String Expr
+          | App Expr Expr
+          deriving (Show, Eq)
 
 data Ty = TBool
         | TNum
