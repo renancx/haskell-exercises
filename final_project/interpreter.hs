@@ -19,7 +19,6 @@ subst x n (And e1 e2) = And (subst x n e1) (subst x n e2)
 subst x n (If e1 e2 e3) = If (subst x n e1) (subst x n e2) (subst x n e3)
 subst x n (Or e1 e2) = Or (subst x n e1) (subst x n e2)
 subst x n (Xor e1 e2) = Xor (subst x n e1) (subst x n e2)
-
 subst x n (Var v) | x == y = n
                   | otherwise = Var v
 subst x n (Lam v e) = Lam v (subst x n e)
@@ -60,9 +59,10 @@ step (Xor BFalse BTrue) = BTrue
 step (Xor BTrue BFalse) = BTrue
 step (Xor e1 e2) = Xor (step e1) e2
 
+step (App (Lam x b) e) | isValue e = subst x e b
+                       | otherwise = App (Lam x b) (step e)
+step (App e1 e2) = App (step e1) e2
+
 eval :: Expr -> Expr
-eval e = case step e of
-    (Num n) -> Num n
-    (BTrue) -> BTrue
-    (BFalse) -> BFalse
-    e' -> eval e'
+eval e = | isValue e = e
+         | otherwise = eval (step e)
