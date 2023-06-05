@@ -1,5 +1,29 @@
 module Interpreter where
 import Lexer
+import Parser
+
+isValue :: Expr -> Bool
+isValue BTrue = True
+isValue BFalse = True
+isValue (Num _) = True
+isValue _ = False
+
+subst :: String -> Expr -> Expr -> Expr
+subst x n BTrue = BTrue
+subst x n BFalse = BFalse
+subst x n (Num x) = Num x
+subst x n (Add e1 e2) = Add (subst x n e1) (subst x n e2)
+subst x n (And e1 e2) = And (subst x n e1) (subst x n e2)
+subst x n (Mul e1 e2) = Mul (subst x n e1) (subst x n e2)
+subst x n (And e1 e2) = And (subst x n e1) (subst x n e2)
+subst x n (If e1 e2 e3) = If (subst x n e1) (subst x n e2) (subst x n e3)
+subst x n (Or e1 e2) = Or (subst x n e1) (subst x n e2)
+subst x n (Xor e1 e2) = Xor (subst x n e1) (subst x n e2)
+
+subst x n (Var v) | x == y = n
+                  | otherwise = Var v
+subst x n (Lam v e) = Lam v (subst x n e)
+subst x n (App e1 e2) = App (subst x n e1) (subst x n e2)
 
 step :: Expr -> Expr
 step (Add (Num n1) (Num n2)) = Num (n1 + n2)
