@@ -65,4 +65,4 @@ step (App e1 e2) = App (step e1) e2
 
 eval :: Expr -> Expr
 eval e = | isValue e = e
-         | otherwise = eval (step e)
+         | otherwise = eval (step e) 
