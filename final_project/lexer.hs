@@ -12,12 +12,13 @@ data Expr = BTrue
           | Or Expr Expr
           | Xor Expr Expr
           | Var String
-          | Lam String Expr
+          | Lam String Ty Expr
           | App Expr Expr
           deriving (Show, Eq)
 
 data Ty = TBool
         | TNum
+        | TFun Ty Ty
         deriving (Show, Eq)
 
 data Token = TokenTrue 
