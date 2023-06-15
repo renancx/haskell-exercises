@@ -13,6 +13,7 @@ subst x n BTrue = BTrue
 subst x n BFalse = BFalse
 subst x n (Num x) = Num x
 subst x n (Add e1 e2) = Add (subst x n e1) (subst x n e2)
+subst x n (Sub e1 e2) = Sub (subst x n e1) (subst x n e2)
 subst x n (And e1 e2) = And (subst x n e1) (subst x n e2)
 subst x n (Mul e1 e2) = Mul (subst x n e1) (subst x n e2)
 subst x n (And e1 e2) = And (subst x n e1) (subst x n e2)
