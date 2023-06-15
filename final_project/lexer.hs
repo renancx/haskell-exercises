@@ -16,6 +16,8 @@ data Expr = BTrue
           | App Expr Expr
           deriving (Show, Eq)
 
+          --Objetivo do lambada calculo: criar funcoes
+
 data Ty = TBool
         | TNum
         | TFun Ty Ty
