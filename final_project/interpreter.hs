@@ -11,7 +11,7 @@ isValue _ = False
 subst :: String -> Expr -> Expr -> Expr
 subst x n BTrue = BTrue
 subst x n BFalse = BFalse
-subst x n (Num x) = Num x
+subst x n (Num n) = Num n
 subst x n (Add e1 e2) = Add (subst x n e1) (subst x n e2)
 subst x n (Sub e1 e2) = Sub (subst x n e1) (subst x n e2)
 subst x n (And e1 e2) = And (subst x n e1) (subst x n e2)
@@ -22,7 +22,7 @@ subst x n (Or e1 e2) = Or (subst x n e1) (subst x n e2)
 subst x n (Xor e1 e2) = Xor (subst x n e1) (subst x n e2)
 subst x n (Var v) | x == y = n
                   | otherwise = Var v
-subst x n (Lam v e) = Lam v (subst x n e)
+subst x n (Lam v t e) = Lam v t (subst x n e)
 subst x n (App e1 e2) = App (subst x n e1) (subst x n e2)
 
 step :: Expr -> Expr
@@ -60,10 +60,17 @@ step (Xor BFalse BTrue) = BTrue
 step (Xor BTrue BFalse) = BTrue
 step (Xor e1 e2) = Xor (step e1) e2
 
-step (App (Lam x b) e) | isValue e = subst x e b
-                       | otherwise = App (Lam x b) (step e)
+step (App (Lam x t b) e) | isValue e = subst x e b
+                       | otherwise = App (Lam x t b) (step e)
 step (App e1 e2) = App (step e1) e2
 
 eval :: Expr -> Expr
-eval e = | isValue e = e
-         | otherwise = eval (step e) 
+eval BTrue = BTrue
+eval BFalse = BFalse
+eval (Num x) = Num x
+eval e' = eval (step e')
+
+typecheck :: Expr -> Expr
+typecheck e = case typeof [] e of
+    Just _ -> e
+    Nothing -> error "Type error"
